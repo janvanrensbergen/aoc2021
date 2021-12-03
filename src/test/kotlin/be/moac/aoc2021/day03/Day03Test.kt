@@ -32,11 +32,24 @@ internal class Day03Test {
 
     @Test
     internal fun `part two`() {
-        val input = listOf<String>()
+        val input = listOf(
+            "00100",
+            "11110",
+            "10110",
+            "10111",
+            "10101",
+            "01111",
+            "00111",
+            "11100",
+            "10000",
+            "11001",
+            "00010",
+            "01010"
+        )
 
         val result = Day03 partTwo input
 
-        assertThat(result).isEqualTo("Bogus")
+        assertThat(result).isEqualTo(230)
     }
 
 }
