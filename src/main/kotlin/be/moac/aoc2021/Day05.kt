@@ -1,12 +1,14 @@
 package be.moac.aoc2021
 
 import kotlin.math.max
+import kotlin.time.ExperimentalTime
 
+@ExperimentalTime
 fun main() {
     val input: List<String> = "/day05_input.txt".readLines()
 
-    println("Part one: ${Day05 partOne input}")
-    println("Part two: ${Day05 partTwo input}")
+    println("Part one: ${timed { Day05 partOne input}}")
+    println("Part two: ${timed { Day05 partTwo input}}")
 }
 
 object Day05 {

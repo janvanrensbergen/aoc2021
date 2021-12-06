@@ -1,10 +1,13 @@
 package be.moac.aoc2021
 
+import kotlin.time.ExperimentalTime
+
+@ExperimentalTime
 fun main() {
     val input: List<String> = "/day06_input.txt".readLines()
 
-    println("Part one: ${Day06 partOne input}")
-    println("Part two: ${Day06 partTwo input}")
+    println("Part one: ${timed { Day06 partOne input}}")
+    println("Part two: ${timed { Day06 partTwo input}}")
 }
 
 object Day06 {
