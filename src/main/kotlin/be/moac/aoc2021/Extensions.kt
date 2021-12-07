@@ -14,10 +14,10 @@ fun <R> String.readLines(map: (String) -> R = { i -> i as R }): List<R> = File(o
 
 
 @ExperimentalTime
-fun <T> timed(block: () -> T): T {
+fun <T> timed(x:Int = 100, block: () -> T): T {
     val timed = measureTimedValue(block)
 
-    val result = (1..100)
+    val result = (1..x)
         .fold(Timed.from(timed)) { acc, _ ->
             acc.add(measureTimedValue(block))
         }

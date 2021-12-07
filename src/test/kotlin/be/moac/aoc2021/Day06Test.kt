@@ -24,4 +24,14 @@ internal class Day06Test {
 
         assertThat(result).isEqualTo(26984457539L)
     }
+
+    @Test
+    internal fun name() {
+        6.mod(3)
+        (0..100).map{it.toString()}.joinToString()
+
+        """
+            
+        """.trimIndent()
+    }
 }
