@@ -28,7 +28,7 @@ internal class Day08Test {
     }
 
     @Test
-    internal fun `part 2`() {
+    fun `part 2`() {
         val input = listOf(
             "be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe",
             "edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc",
