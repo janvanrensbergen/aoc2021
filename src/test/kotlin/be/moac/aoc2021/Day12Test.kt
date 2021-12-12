@@ -92,7 +92,57 @@ internal class Day12Test {
 
         val result = Day12 partTwo input
 
-        assertThat(result).isEqualTo(195)
+        assertThat(result).isEqualTo(103L)
+    }
+
+
+
+    @Test
+    fun `part two simple example`() {
+
+        val input = listOf(
+            "start-A",
+            "start-b",
+            "A-c",
+            "A-b",
+            "b-d",
+            "A-end",
+            "b-end",
+        )
+
+        val result = Day12 partTwo input
+
+        assertThat(result).isEqualTo(36L)
+    }
+
+
+    @Test
+    fun `part two larger example`() {
+
+        val input = listOf(
+            "fs-end",
+            "he-DX",
+            "fs-he",
+            "start-DX",
+            "pj-DX",
+            "end-zg",
+            "zg-sl",
+            "zg-pj",
+            "pj-he",
+            "RW-he",
+            "fs-DX",
+            "pj-RW",
+            "zg-RW",
+            "start-pj",
+            "he-WI",
+            "zg-he",
+            "pj-fs",
+            "start-RW",
+        )
+
+        val result = Day12 partTwo input
+
+        assertThat(result).isEqualTo(3509L)
     }
 
 }
