@@ -1,9 +1,9 @@
-package be.moac.aoc2021.day02
+package be.moac.aoc2021
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class PilotTest {
+internal class Day02Test {
 
     @Test
     internal fun `Part one`() {
@@ -16,7 +16,7 @@ internal class PilotTest {
             "forward 2"
         )
 
-        val result = Pilot partOne input
+        val result = Day02 partOne input
 
         assertThat(result).isEqualTo(150L)
     }
@@ -32,7 +32,7 @@ internal class PilotTest {
             "forward 2"
         )
 
-        val result = Pilot partTwo  input
+        val result = Day02 partTwo  input
 
         assertThat(result).isEqualTo(900L)
     }

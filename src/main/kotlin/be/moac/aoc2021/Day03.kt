@@ -1,4 +1,4 @@
-package be.moac.aoc2021.day03
+package be.moac.aoc2021
 
 import be.moac.aoc2021.readLines
 

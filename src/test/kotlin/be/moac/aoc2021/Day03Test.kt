@@ -1,9 +1,6 @@
-package be.moac.aoc2021.day03
+package be.moac.aoc2021
 
-import be.moac.aoc2021.day02.Pilot
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 internal class Day03Test {

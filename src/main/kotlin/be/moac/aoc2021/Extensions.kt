@@ -1,6 +1,7 @@
 package be.moac.aoc2021
 
 import java.io.File
+import java.util.ArrayDeque
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeUnit.*
 import kotlin.system.measureTimeMillis
@@ -47,3 +48,8 @@ private data class Timed<T>(val min: Duration, val max: Duration, val total: Arr
         )
     }
 }
+
+
+fun <T> ArrayDeque<T>.push(element: T) = addLast(element)
+fun <T> ArrayDeque<T>.pop(): T? = this.pollLast()
+

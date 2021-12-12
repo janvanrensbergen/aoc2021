@@ -1,15 +1,13 @@
-package be.moac.aoc2021.day01
-
-import be.moac.aoc2021.readLines
+package be.moac.aoc2021
 
 fun main() {
     val input: List<Long> = "/day01_input.txt".readLines { i -> i.toLong() }
 
-    println("Part one: ${CalculateDepth partOne input}")
-    println("Part two: ${CalculateDepth partTwo input}")
+    println("Part one: ${Day01 partOne input}")
+    println("Part two: ${Day01 partTwo input}")
 }
 
-object CalculateDepth {
+object Day01 {
 
     infix fun partOne(input: List<Long>): Long =
         input.zipWithNext().fold(0)

@@ -1,15 +1,13 @@
-package be.moac.aoc2021.day02
-
-import be.moac.aoc2021.readLines
+package be.moac.aoc2021
 
 fun main() {
     val input: List<String> = "/day02_input.txt".readLines()
 
-    println("Part one: ${Pilot partOne input}")
-    println("Part two: ${Pilot partTwo input}")
+    println("Part one: ${Day02 partOne input}")
+    println("Part two: ${Day02 partTwo input}")
 }
 
-object Pilot {
+object Day02 {
 
     infix fun partOne(input: List<String>) =
         with(input.fold(0L to 0L) { acc, s ->

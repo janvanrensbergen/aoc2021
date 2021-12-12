@@ -65,8 +65,5 @@ object Day10 {
 
     private fun Char.isOpening() = "({[<".toCharArray().contains(this)
 
-    fun <T> ArrayDeque<T>.push(element: T) = addLast(element)
-    fun <T> ArrayDeque<T>.pop(): T? = this.pollLast()
-
 }
 
