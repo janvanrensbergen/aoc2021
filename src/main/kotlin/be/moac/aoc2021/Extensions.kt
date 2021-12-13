@@ -48,8 +48,3 @@ private data class Timed<T>(val min: Duration, val max: Duration, val total: Arr
         )
     }
 }
-
-
-fun <T> ArrayDeque<T>.push(element: T) = addLast(element)
-fun <T> ArrayDeque<T>.pop(): T? = this.pollLast()
-
