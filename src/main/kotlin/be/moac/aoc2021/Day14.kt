@@ -1,15 +1,14 @@
 package be.moac.aoc2021
 
-import java.util.*
-import kotlin.math.absoluteValue
+import kotlin.math.ceil
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
 fun main() {
     val input: List<String> = "/day14_input.txt".readLines()
 
-    println("Part one: ${timed(1) { Day14 partOne input }}")
-    println("Part two: ${timed(0) { Day14 partTwo input }}")
+    println("Part one: ${timed { Day14 partOne input }}")
+    println("Part two: ${timed { Day14 partTwo input }}")
 
 }
 
@@ -21,53 +20,77 @@ object Day14 {
         val template = input.polymerTemplate()
         val rules = input.rules()
 
-        val result = template
-            .apply(rules)
-            .apply(rules)
-            .apply(rules)
-            .apply(rules)
-            .apply(rules)
-            .apply(rules)
-            .apply(rules)
-            .apply(rules)
-            .apply(rules)
-            .apply(rules)
-            .groupingBy { it }
-            .eachCount()
+        val result = template.apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules)
 
-        val maxOf = result.maxOf { it.value }
-        val minOf = result.minOf { it.value }
-
-        return maxOf.minus(minOf).toLong()
-    }
-
-    fun Template.apply(rules: Map<String, String>):String {
-        tailrec fun repeat(zip: List<Pair<Char,Char>>, result: String = "", last: Char = 'x'): String =
-            when{
-                zip.isEmpty() -> "$result$last"
-                else -> {
-                    val (a, b) = zip.first()
-                    val newResult = rules["$a$b"]?.let { "$a$it" } ?: "$a"
-                    repeat(zip.drop(1), result + newResult, b)
-                }
-            }
-
-       return repeat(this.zipWithNext())
+        val sum = result.sum()
+        return sum.maxOf { it.value }.minus(sum.minOf { it.value })
     }
 
     infix fun partTwo(input: List<String>): Long {
-        return 0L
+        val template = input.polymerTemplate()
+        val rules = input.rules()
+        val result = template
+            .apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules)
+            .apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules)
+            .apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules)
+            .apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules).apply(rules)
+
+        val sum = result.sum()
+
+        val maxOf = sum.maxOf { it.value }
+        val minOf = sum.minOf { it.value }
+
+        return maxOf.minus(minOf)
     }
 
+    private fun PolymerTemplate.apply(rules: Rules): PolymerTemplate {
 
-    internal fun List<String>.polymerTemplate() =
+        tailrec fun repeat(input: MutableTemplate, result: MutableTemplate = mutableMapOf()): PolymerTemplate =
+            when {
+                input.isEmpty() -> result.toMap()
+                else -> {
+                    val key = input.keys.first()
+                    val value = input[key]!!
+                    val c = rules[key]!!
+
+                    val first = (key.first to c)
+                    val second = (c to key.second)
+
+                    result[first] = result[first]?.plus(value) ?: value
+                    result[second] = result[second]?.plus(value) ?: value
+
+                    input.remove(key)
+                    repeat(input, result)
+                }
+            }
+
+        return repeat(this.toMutableMap())
+    }
+
+    private fun PolymerTemplate.sum() = entries
+        .foldIndexed(mutableMapOf<Char, Long>()) { index, acc, entry ->
+            acc[entry.key.first] = acc[entry.key.first]?.plus(entry.value) ?: entry.value
+            acc[entry.key.second] = acc[entry.key.second]?.plus(entry.value) ?: entry.value
+            acc
+        }
+        .map { it.key to ceil(it.value.div(2.0)).toLong() }
+        .toMap()
+
+    private fun List<String>.polymerTemplate(): PolymerTemplate =
         this.first { templateRegex.matches(it) }
+            .zipWithNext()
+            .fold(mutableMapOf()) { acc, pair ->
+                acc[pair] = acc[pair]?.plus(1L) ?: 1L
+                acc
+            }
 
-    internal fun List<String>.rules():Map<String, String> =
+    internal fun List<String>.rules(): Rules =
         this.filter { ruleRegex.matches(it) }
             .map { ruleRegex.find(it) }
-            .associate { it!!.groupValues[1] to it.groupValues[2] }
+            .associate { (it!!.groupValues[1].first() to it.groupValues[1].last()) to it.groupValues[2].first() }
 }
 
-private typealias Template = String
+private typealias PolymerTemplate = Map<Pair<Char, Char>, Long>
+private typealias MutableTemplate =  MutableMap<Pair<Char, Char>, Long>
+private typealias Rules = Map<Pair<Char, Char>, Char>
 
