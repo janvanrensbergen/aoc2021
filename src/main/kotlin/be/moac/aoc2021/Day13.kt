@@ -51,7 +51,7 @@ object Day13 {
         }
 
 
-    internal fun List<String>.points() = this
+    private fun List<String>.points() = this
         .filterNot { it.startsWith("fold") }
         .filterNot { it.isBlank() }
         .map { with(it.split(",")) { Point(this.first().toInt(), this.last().toInt()) } }

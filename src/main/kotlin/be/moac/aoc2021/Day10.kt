@@ -60,7 +60,6 @@ object Day10 {
                 else -> false
             }
         }
-
     }
 
     private fun Char.isOpening() = "({[<".toCharArray().contains(this)
